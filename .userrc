@@ -1,0 +1,2 @@
+# Full colors
+export TERM=xterm-256color
