@@ -31,8 +31,10 @@ set showmatch       " highlight corresp [{()}]
 set cursorline      " highlight current line
 filetype indent plugin on  " load filetype-specific indent data
 syntax on
-"set guioptions -=m  " hide File Edit Tools ... menu
-"set guioptions -=T  " hide open, save, undo, redo, ... toolbar
+if has ("gui_running")
+    set guioptions -=m  " hide File Edit Tools ... menu
+    set guioptions -=T  " hide open, save, undo, redo, ... toolbar
+endif
 
 " Spacing
 set tabstop=4       " visual spaces per tab
@@ -43,7 +45,6 @@ set expandtab       " tabs are spaces
 " Searching
 set hlsearch        " highlight matches
 set incsearch       " search as query entered
-"nnoremap <esc> :noh<CR> " causes weird issues (enter in REPLACE)
 
 " Folding (collapse code blocks)
 set foldenable      " enable folding
@@ -120,3 +121,12 @@ hi clear CursorLine
 inoremap {<CR> {<CR>}<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
+
+" OS SPECIFIC ADJUSTMENTS
+if has("win32") || has("win16") "Windows
+    set shell=/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+else "Unix
+    let os = substitute(system('uname'), "\n", "", "")
+    "if os == "Linux"
+    " uname is a shell function on unix systems
+endif
