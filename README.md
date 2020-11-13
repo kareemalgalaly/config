@@ -5,8 +5,10 @@ Clone this repo wherever you like and create (hard) symlinks to relevant files.
 Clone this repo on the same drive as your home directory (typically C:)
 In your home directory:
 ```
-mklink /H _vimrc   {path_to_repo/.vimrc}
-mklink /J vimfiles {path_to_repo/.vim}
+cd ~
+git clone https://github.com/kareemalgalaly/config.git
+mklink /H _vimrc   config/.vimrc    # replace config with path to config if you cloned it somewhere else
+mklink /J vimfiles config/.vim      # ^
 ```
 
 ### Symbolic Links
