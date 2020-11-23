@@ -2,24 +2,26 @@
 Clone this repo wherever you like and create (hard) symlinks to relevant files.
 
 ## WINDOWS:
-Clone this repo on the same drive as your home directory (typically C:)
-In your home directory:
-```
-cd ~
-git clone https://github.com/kareemalgalaly/config.git
-mklink /H _vimrc   config/.vimrc    # replace config with path to config if you cloned it somewhere else
-mklink /J vimfiles config/.vim      # ^
-```
+Clone this repo on the same drive as your home directory. 
 
 ### Symbolic Links
 ```
 mklink /H Link Target # hard link to file
 mklink /J Link Target # hard link to directory
 ```
+Note: These commands must be run in cmd (powershell does not support `mklink`)  
+Note: `mklink /H` does not support hard links to files on another drive.  
 
-Note: These commands must be run in cmd (powershell does not support `mklink`)
+### VIM Setup
+Create links `vimfiles` -> `.vim` and `_vimrc` -> `.vimrc` files in the cloned repo.  
+To enable Grep command in vim, powershell (x86) needs ExecutionPolicy to be at least RemoteSigned. Note that `powershell` and `powershell (x86)` have different values for this property.
+``` 
+Get-ExecutionPolicy 
+Set-ExecutionPolicy {value}
+```
 
-Note: `mklink /H` does not support hard links to files on another drive.
+### Powershell Module Setup
+Create links from each module directory in `PowerShellModules/*` into `%USERPROFILE%/Documents/WindowsPowerShell/Modules/*`  
 
 ## LINUX:
 ### Symbolic Links

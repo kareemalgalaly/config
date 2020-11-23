@@ -9,16 +9,16 @@ else "Unix
     " uname is a shell function on unix systems
 endif
 
-function! search#grepr(ending, string)
+function! search#grepr(string, ending)
     if s:os == "Windows"
-        let ex = "!\"Get-ChildItem -Recurse " . a:ending . " | Select-String " . a:string . "\""
+        "let ex = "!\"Get-ChildItem -Recurse " . a:ending . " | Select-String " . a:string . "\""
+        let ex = "!Search-KAGrepR -String '" . a:string . "' -FileType '" . a:ending . "' | gvim - "
         execute ex
     else
-        let ex = "!grep " . a:string . " -n -H -r " . a:ending)
+        let ex = "!grep '" . a:string . "' -n -H -r " . a:ending
         execute ex
     endif
 endfunction
 
-nnoremap <leader>r :echo search#grepr('
+command! -nargs=* Grep call search#grepr(<f-args>)
 
-"echo search#grepr("*.py", "'Orientation props'")
