@@ -20,5 +20,17 @@ function! search#grepr(string, ending)
     endif
 endfunction
 
+function! search#grepri(string, ending)
+    if s:os == "Windows"
+        "let ex = "!\"Get-ChildItem -Recurse " . a:ending . " | Select-String " . a:string . "\""
+        let ex = "!Search-KAGrepRI -String '" . a:string . "' -FileType '" . a:ending . "' | gvim - "
+        execute ex
+    else
+        let ex = "!grep '" . a:string . "' -n -H -r " . a:ending
+        execute ex
+    endif
+endfunction
+
 command! -nargs=* Grep call search#grepr(<f-args>)
+command! -nargs=* Grepi call search#grepr(<f-args>)
 
