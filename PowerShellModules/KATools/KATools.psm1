@@ -1,3 +1,4 @@
+# Recursive case-sensitive search (mimics grep -r on unix)
 function Search-KAGrepR {
 
     param (
@@ -8,6 +9,7 @@ function Search-KAGrepR {
     Get-ChildItem -Recurse $FileType | Select-String $String -CaseSensitive
 }
 
+# Recursive case-insensitive search (mimics grep -r on unix)
 function Search-KAGrepRI {
 
     param (
@@ -17,3 +19,20 @@ function Search-KAGrepRI {
 
     Get-ChildItem -Recurse $FileType | Select-String $String
 }
+
+# Starts a windows-store app
+# The PackageFamilyName can be found by searching the contents of get-appxpackage
+function Start-StoreApp {
+
+    param (
+        [Parameter(Mandatory=$true)] [string]$PackageFamilyName
+    )
+
+    explorer.exe shell:appsFolder\$PackageFamilyName!App
+}
+
+# Starts Terminal Preview
+function Start-Terminal {
+    Start-StoreApp Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe
+}
+

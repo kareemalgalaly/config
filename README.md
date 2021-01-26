@@ -22,6 +22,7 @@ Set-ExecutionPolicy {value}
 
 ### Powershell Module Setup
 Create links from each module directory in `PowerShellModules/*` into `%USERPROFILE%/Documents/WindowsPowerShell/Modules/*`  
+[Microsoft documentation](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.1)
 
 ## LINUX:
 ### Symbolic Links
