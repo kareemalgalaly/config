@@ -34,5 +34,5 @@ ln Target Link    # hard link to file/directory
 ln -s Target Link # soft link to file/directory
 ```
 
-### Setuo
+### Setup
 Create symbolic links for `.vim`, `.vimrc`, `.userrc` in your home `~/` directory.
