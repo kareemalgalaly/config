@@ -1,3 +1,6 @@
+# Introduction
+This repo is just a collection of useful defaults I like keep handy whether I'm working on a windows or unix machine. It includes vim defaults, some powershell tools, and a userrc. Feel free to tinker with it if you like. I did not create and do not own the vim colorschemes, each scheme has its license information in the header. See the readme in the .vim directory for details.
+
 # Installation
 Clone this repo wherever you like and create (hard) symlinks to relevant files.
 
