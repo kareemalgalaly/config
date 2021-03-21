@@ -36,3 +36,4 @@ function Start-Terminal {
     Start-StoreApp Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe
 }
 
+# Get-ChildItem $Path | Where{$_.Name -Match "<RegEx Pattern>"} | Remove-Item
