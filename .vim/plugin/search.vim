@@ -1,3 +1,4 @@
+" MIT License. Copyright (c) 2020-2021 Kareem Ahmad.
 scriptencoding utf-8
 
 if has("win32") || has("win16") "Windows
