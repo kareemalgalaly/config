@@ -1,3 +1,6 @@
+# Introduction
+This repo is just a collection of useful defaults I like keep handy whether I'm working on a windows or unix machine. It includes vim defaults, some powershell tools, and a userrc. Feel free to tinker with it if you like. I did not create and do not own the vim colorschemes, each scheme has its license information in the header. See the readme in the .vim directory for details.
+
 # Installation
 Clone this repo wherever you like and create (hard) symlinks to relevant files.
 
@@ -30,3 +33,6 @@ Create links from each module directory in `PowerShellModules/*` into `%USERPROF
 ln Target Link    # hard link to file/directory
 ln -s Target Link # soft link to file/directory
 ```
+
+### Setup
+Create symbolic links for `.vim`, `.vimrc`, `.userrc` in your home `~/` directory.

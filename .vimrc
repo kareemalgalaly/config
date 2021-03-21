@@ -1,26 +1,29 @@
-" Reference
-" https://dougblack.io/words/a-good-vimrc.html
+" MIT LICENSE Copyright (c) 2020-2021 Kareem Ahmad.
 
-" cmd prompt : prompt /? for info
-" setx PROMPT $g$s       for set default
+" ------------------------------------------------------------------
+" Security
+" ------------------------------------------------------------------
 
-"security
 :set modelines=0
 :set nomodeline
 
-"colorscheme deus
+" ------------------------------------------------------------------
+" Disable Annoying Beeps
+" ------------------------------------------------------------------
+
+" set belloff=all
+hi clear CursorLine
+
+" ------------------------------------------------------------------
+" Themes and UI
+" ------------------------------------------------------------------
+
+" Airline
 let g:airline_theme='twofirewatch'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep=' '
-"let g:airline#extensions#tabline#left_alt_sep='>'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_symbols_ascii = 1
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"endif
-"let g:airline_left_sep='▶'
-"set encoding=utf-8
 
+" Basic Themes
 colorscheme PaperColor
 syntax on
 set bg=dark
@@ -36,6 +39,10 @@ if has ("gui_running")
     set guioptions -=T  " hide open, save, undo, redo, ... toolbar
 endif
 
+" ------------------------------------------------------------------
+" Behavior
+" ------------------------------------------------------------------
+
 " Spacing
 set tabstop=4       " visual spaces per tab
 set softtabstop=4   " spaces inserted per tab
@@ -46,40 +53,53 @@ set expandtab       " tabs are spaces
 set hlsearch        " highlight matches
 set incsearch       " search as query entered
 
-" Folding (collapse code blocks)
+" Folding
 set foldenable      " enable folding
 set foldmethod=indent "fold by indent
 set foldlevelstart=10 "open most folds by default
 set foldnestmax=10    "10 nested fold maximum
 nnoremap <space> za
 
-" Persistent Undo
-set undofile   " Maintain undo history between sessions
+" Cut-Copy-Paste-Paste
+noremap <C-X> "+x 
+noremap <C-C> "+y
+noremap <C-Q> "+gP
+inoremap <C-Q> <C-R>*
+
+" Move by visual line (instead of physical)
+"nnoremap j gj
+"nnoremap k gk
+nnoremap gV `[v`] "I forgot what this does
+
+" Wrapping
+set backspace=indent,eol,start " allow backspacing over these special characters
+set whichwrap+=<,>,h,l,[,]     " allow wrapping to previous lines <> arrows in norm, [] arrows in insert
+
+" Control Space to leave insert, <leader>Space to clear highlight
+inoremap <C-Space> <Esc>
+nnoremap <leader><Space> :noh<CR>
+
+" ------------------------------------------------------------------
+" Undo
+" ------------------------------------------------------------------
+
+" Persistent Undo (you must mkdir ~/.undodir/ for this to work)
+set undofile
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
-let mapleader="\\"  "set leader to be the comma (not backslash)
-" toggle gundo (display undo tree)
+
+" toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR>
+
 " set U to redo
 nnoremap U <C-R>
 
+" ------------------------------------------------------------------
+" GUI Text Scaling with SHIFT {+/_}
+" ------------------------------------------------------------------
 
-" Behavior
-set backspace=indent,eol,start " allow backspacing over these special characters
-set whichwrap+=<,>,h,l,[,]     " allow wrapping to previous lines <> arrows in norm, [] arrows in insert
-" Cut-Copy-Paste
-noremap <C-X> "+x
-noremap <C-C> "+y
-noremap <C-Q> "+gP
-inoremap <C-Q> <C-R>*
-" move by visual line (instead of physical)
-"nnoremap j gj
-"nnoremap k gk
-nnoremap gV `[v`]
-
-" + / - grow and shrink view
 function! FontSizePlus ()
     let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
     let l:gf_size_whole = l:gf_size_whole + 1
@@ -98,6 +118,10 @@ if has("gui_running")
     nnoremap + :call FontSizePlus()<CR>
 endif
 
+" ------------------------------------------------------------------
+" GUI Text Scaling with SHIFT {+/_}
+" ------------------------------------------------------------------
+
 " trim whitespace function
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -111,18 +135,18 @@ let g:netrw_browse_split = 3 " 1 open in horiz, 2 open in vert
 "                              3 open in tab, 4 open in previous
 let g:netrw_winsize = 25  " 25% of screen when :Vexplore or :Hexplore
 
-" Control Space to enter or leave insert
-inoremap <C-Space> <Esc>
-nnoremap <leader><Space> :noh<CR>
-
-" set belloff=all
-hi clear CursorLine
+" ------------------------------------------------------------------
+" Basic Autocomplete
+" ------------------------------------------------------------------
 
 inoremap {<CR> {<CR>}<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
 
+" ------------------------------------------------------------------
 " OS SPECIFIC ADJUSTMENTS
+" ------------------------------------------------------------------
+
 if has("win32") || has("win16") "Windows
     set shell=/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
 
