@@ -1,8 +1,4 @@
-" Reference
-" https://dougblack.io/words/a-good-vimrc.html
-
-" cmd prompt : prompt /? for info
-" setx PROMPT $g$s       for set default
+" MIT LICENSE Copyright (c) 2020-2021 Kareem Ahmad.
 
 "security
 :set modelines=0
