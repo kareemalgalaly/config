@@ -33,3 +33,6 @@ Create links from each module directory in `PowerShellModules/*` into `%USERPROF
 ln Target Link    # hard link to file/directory
 ln -s Target Link # soft link to file/directory
 ```
+
+### Setuo
+Create symbolic links for `.vim`, `.vimrc`, `.userrc` in your home `~/` directory.
