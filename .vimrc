@@ -21,14 +21,23 @@ hi clear CursorLine
 " Airline
 let g:airline_theme='twofirewatch'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_symbols_ascii = 1
+let g:airline_powerline_fonts = 1
+"let g:airline_section_y = '%{strftime("%b %d, %H:%M (%z)")}'
+let g:airline_section_y = '%{strftime("%m/%d/%y %H:%M")}'
+let g:airline_section_z = '[%l/%L : %c] %m'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
+scriptencoding utf-8
+set encoding=utf-8
 
 " Basic Themes
 colorscheme PaperColor
 syntax on
 set bg=dark
 set noshowmode      " hide Vim's default -- Mode --
-set guifont=Ubuntu_Mono:h8
+set guifont=Ubuntu_Mono_derivative_Powerlin:h14
 set number          " show line numbers
 set showmatch       " highlight corresp [{()}]
 set cursorline      " highlight current line
@@ -61,7 +70,7 @@ set foldnestmax=10    "10 nested fold maximum
 nnoremap <space> za
 
 " Cut-Copy-Paste-Paste
-noremap <C-X> "+x 
+noremap <C-X> "+x
 noremap <C-C> "+y
 noremap <C-Q> "+gP
 inoremap <C-Q> <C-R>*
@@ -119,7 +128,7 @@ if has("gui_running")
 endif
 
 " ------------------------------------------------------------------
-" GUI Text Scaling with SHIFT {+/_}
+" Misc
 " ------------------------------------------------------------------
 
 " trim whitespace function
@@ -149,38 +158,6 @@ inoremap [<CR> [<CR>]<C-o>O
 
 if has("win32") || has("win16") "Windows
     set shell=/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
-
-    " assumes you renamed diff.exe to vimdiff.exe
-    function MyDiff()
-       let opt = '-a --binary '
-       if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-       if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-       let arg1 = v:fname_in
-       if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-       let arg2 = v:fname_new
-       if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-       let arg3 = v:fname_out
-       if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-       if $VIMRUNTIME =~ ' '
-         if &sh =~ '\<cmd'
-           if empty(&shellxquote)
-             let l:shxq_sav = ''
-             set shellxquote&
-           endif
-           let cmd = '"' . $VIMRUNTIME . '\vimdiff"'
-         else
-           let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\vimdiff"'
-         endif
-       else
-         let cmd = $VIMRUNTIME . '\vimdiff'
-       endif
-       silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-       if exists('l:shxq_sav')
-         let &shellxquote=l:shxq_sav
-       endif
-    endfunction
-
-    set diffexpr=MyDiff()
 
 else "Unix
     let os = substitute(system('uname'), "\n", "", "")

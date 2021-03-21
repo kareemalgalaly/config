@@ -16,16 +16,18 @@ Note: These commands must be run in cmd (powershell does not support `mklink`)
 Note: `mklink /H` does not support hard links to files on another drive.  
 
 ### VIM Setup
-Create links `vimfiles` -> `.vim` and `_vimrc` -> `.vimrc` files in the cloned repo.  
+Create links `~/vimfiles` <-> `.vim` and `~/_vimrc` <-> `.vimrc` files in the cloned repo.  
+For airline to properly display fonts, you'll need a powerline patched font. Patched `ubuntu mono` can be found in the fonts directory. Manually installing these fonts and setting your terminal to use them is sufficient. [Details.](https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation)
+
+### Powershell Setup
+Create links from each module directory in `PowerShellModules/*` into `%USERPROFILE%/Documents/WindowsPowerShell/Modules/*`  
+[Microsoft documentation](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.1)
+
 To enable Grep command in vim, powershell (x86) needs ExecutionPolicy to be at least RemoteSigned. Note that `powershell` and `powershell (x86)` have different values for this property.
 ``` 
 Get-ExecutionPolicy 
 Set-ExecutionPolicy {value}
 ```
-
-### Powershell Module Setup
-Create links from each module directory in `PowerShellModules/*` into `%USERPROFILE%/Documents/WindowsPowerShell/Modules/*`  
-[Microsoft documentation](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.1)
 
 ## LINUX:
 ### Symbolic Links
@@ -36,3 +38,6 @@ ln -s Target Link # soft link to file/directory
 
 ### Setup
 Create symbolic links for `.vim`, `.vimrc`, `.userrc` in your home `~/` directory.
+
+See [Powerline Docs](https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation) to see how to setup patched fonts.
+
