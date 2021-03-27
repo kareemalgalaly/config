@@ -26,8 +26,13 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_y = '%{strftime("%m/%d/%y %H:%M")}'
 let g:airline_section_z = '[%l/%L : %c] %m'
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+if has ("gui_running")
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+else
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+endif
 
 scriptencoding utf-8
 set encoding=utf-8

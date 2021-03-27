@@ -11,7 +11,7 @@ else "Unix
 endif
 
 function! search#grepr(string, ending)
-    if s:os == "Windows"
+    if s:os ==? "Windows"
         "let ex = "!\"Get-ChildItem -Recurse " . a:ending . " | Select-String " . a:string . "\""
         let ex = "!Search-KAGrepR -String '" . a:string . "' -FileType '" . a:ending . "' | gvim - "
         execute ex
@@ -22,7 +22,7 @@ function! search#grepr(string, ending)
 endfunction
 
 function! search#grepri(string, ending)
-    if s:os == "Windows"
+    if s:os ==? "Windows"
         "let ex = "!\"Get-ChildItem -Recurse " . a:ending . " | Select-String " . a:string . "\""
         let ex = "!Search-KAGrepRI -String '" . a:string . "' -FileType '" . a:ending . "' | gvim - "
         execute ex
@@ -35,3 +35,6 @@ endfunction
 command! -nargs=* Grep call search#grepr(<f-args>)
 command! -nargs=* Grepi call search#grepr(<f-args>)
 
+" Note
+" ==? case insensitive & ignore settings (like nnormeap)
+" ==# case sensitive   & ignore settings (like nnormeap)
